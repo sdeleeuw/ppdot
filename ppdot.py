@@ -32,8 +32,8 @@ home_dir = os.path.expanduser('~')
 macros_dir = os.path.expanduser('~/.ppdot/macros')
 styles_dir = os.path.expanduser('~/.ppdot/styles')
 
-macros = []
-styles = {}
+macros_set = []
+styles_set = {}
 
 
 def process_file(filename):
@@ -137,13 +137,13 @@ def include_file(filename):
 def register_macro(name, value):
 
     # replace macro if exists
-    for index, (n, v) in enumerate(macros):
+    for index, (n, v) in enumerate(macros_set):
         if n == name:
-            macros[index] = (name, value)
+            macros_set[index] = (name, value)
 
     # append macro if not exists
     else:
-        macros.append((name, value))
+        macros_set.append((name, value))
 
 
 def apply_macros(line):
@@ -151,7 +151,7 @@ def apply_macros(line):
     output = line
 
     # iterate macros reversed to allow nesting
-    for name, value in reversed(macros):
+    for name, value in reversed(macros_set):
 
         # search and replace, that is all
         output = output.replace(name, value)
@@ -159,23 +159,23 @@ def apply_macros(line):
     return output
 
 
-def register_style(style_name, attr_name, attr_value, target):
+def register_style(style, attr, value, target):
 
     # add style on first assignment
-    if not style_name in styles.keys():
-        styles[style_name] = {}
+    if not style in styles_set.keys():
+        styles_set[style] = {}
 
     # add attribute on first assignment
-    if not attr_name in styles[style_name].keys():
-        styles[style_name][attr_name] = {}
+    if not attr in styles_set[style].keys():
+        styles_set[style][attr] = {}
 
     # update style properties
     if 'g' in target:
-        styles[style_name][attr_name]['graph_value'] = attr_value
+        styles_set[style][attr]['graph_value'] = value
     if 'n' in target:
-        styles[style_name][attr_name]['node_value'] = attr_value
+        styles_set[style][attr]['node_value'] = value
     if 'e' in target:
-        styles[style_name][attr_name]['edge_value'] = attr_value
+        styles_set[style][attr]['edge_value'] = value
 
 
 def apply_styles(line):
@@ -183,29 +183,29 @@ def apply_styles(line):
     output = line
 
     # iterate through style-target combinations
-    for style_name in styles.keys():
+    for style in styles_set.keys():
         for target in ['g', 'n', 'e']:
 
             # useful example: n:color_green
-            search_for = '{}:{}'.format(target, style_name)
+            search_for = '{}:{}'.format(target, style)
             replace_with = ''
 
-            # construct attr_name=attr_value statement list for the current target
-            for attr_name in styles[style_name].keys():
+            # construct attr=value statement list for the current target
+            for attr in styles_set[style].keys():
 
-                if target == 'g' and 'graph_value' in styles[style_name][attr_name]:
-                    value = styles[style_name][attr_name]['graph_value']
-                elif target == 'n' and 'node_value' in styles[style_name][attr_name]:
-                    value = styles[style_name][attr_name]['node_value']
-                elif target == 'e' and 'edge_value' in styles[style_name][attr_name]:
-                    value = styles[style_name][attr_name]['edge_value']
+                if target == 'g' and 'graph_value' in styles_set[style][attr]:
+                    value = styles_set[style][attr]['graph_value']
+                elif target == 'n' and 'node_value' in styles_set[style][attr]:
+                    value = styles_set[style][attr]['node_value']
+                elif target == 'e' and 'edge_value' in styles_set[style][attr]:
+                    value = styles_set[style][attr]['edge_value']
                 else:
                     continue
 
                 if len(replace_with):
-                    replace_with = '{}, {}={}'.format(replace_with, attr_name, value)
+                    replace_with = '{}, {}={}'.format(replace_with, attr, value)
                 else:
-                    replace_with = '{}={}'.format(attr_name, value)
+                    replace_with = '{}={}'.format(attr, value)
 
             # search and replace, that ... never mind
             output = output.replace(search_for, replace_with)
