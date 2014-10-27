@@ -91,48 +91,6 @@ def process_command_line(line):
         raise Exception('Invalid command: {}'.format(cmd))
 
 
-def process_include_command(filename):
-
-    # accept shell-ish directory variables
-    filename = filename.replace('$HOME', home_dir)
-    filename = filename.replace('$MACROS', macros_dir)
-    filename = filename.replace('$STYLES', styles_dir)
-
-    # process included file
-    process_file(filename)
-
-
-def process_define_command(name, value):
-
-    # replace macro if exists
-    for index, (n, v) in enumerate(macros):
-        if n == name:
-            macros[index] = (name, value)
-
-    # append macro if not exists
-    else:
-        macros.append((name, value))
-
-
-def process_style_command(style_name, attr_name, attr_value, target):
-
-    # add style on first assignment
-    if not style_name in styles.keys():
-        styles[style_name] = {}
-
-    # add attribute on first assignment
-    if not attr_name in styles[style_name].keys():
-        styles[style_name][attr_name] = {}
-
-    # update style properties
-    if 'g' in target:
-        styles[style_name][attr_name]['graph_value'] = attr_value
-    if 'n' in target:
-        styles[style_name][attr_name]['node_value'] = attr_value
-    if 'e' in target:
-        styles[style_name][attr_name]['edge_value'] = attr_value
-
-
 def process_graphviz_line(line, is_prev_line_blank=False):
 
     stripped = line.strip()
@@ -157,6 +115,29 @@ def process_graphviz_line(line, is_prev_line_blank=False):
     print(output)
 
 
+def process_include_command(filename):
+
+    # accept shell-ish directory variables
+    filename = filename.replace('$HOME', home_dir)
+    filename = filename.replace('$MACROS', macros_dir)
+    filename = filename.replace('$STYLES', styles_dir)
+
+    # process included file
+    process_file(filename)
+
+
+def process_define_command(name, value):
+
+    # replace macro if exists
+    for index, (n, v) in enumerate(macros):
+        if n == name:
+            macros[index] = (name, value)
+
+    # append macro if not exists
+    else:
+        macros.append((name, value))
+
+
 def apply_macros(line):
 
     output = line
@@ -168,6 +149,25 @@ def apply_macros(line):
         output = output.replace(name, value)
 
     return output
+
+
+def process_style_command(style_name, attr_name, attr_value, target):
+
+    # add style on first assignment
+    if not style_name in styles.keys():
+        styles[style_name] = {}
+
+    # add attribute on first assignment
+    if not attr_name in styles[style_name].keys():
+        styles[style_name][attr_name] = {}
+
+    # update style properties
+    if 'g' in target:
+        styles[style_name][attr_name]['graph_value'] = attr_value
+    if 'n' in target:
+        styles[style_name][attr_name]['node_value'] = attr_value
+    if 'e' in target:
+        styles[style_name][attr_name]['edge_value'] = attr_value
 
 
 def apply_styles(line):
