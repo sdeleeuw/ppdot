@@ -44,7 +44,7 @@ def process_file(filename):
     with codecs.open(filename, 'r', encoding='utf-8') as file_obj:
         for line in file_obj:
 
-            # remove line seperators
+            # remove line seperator
             line = line.rstrip(os.linesep)
 
             # remove leading and trailing whitespace
@@ -54,44 +54,52 @@ def process_file(filename):
 
                 # line contains preprocessor command
                 stripped = stripped[len(cmd_indicator):].lstrip()
-                process_command_line(stripped)
+                process_command(stripped)
 
             else:
 
-                # line contains graphviz statements
-                process_graphviz_line(line, is_prev_line_blank)
+                # line contains graphviz data
+                process_graphviz(line, is_prev_line_blank)
 
-                # remember if line is blank for next iteration
+                # remember if line is blank
                 is_prev_line_blank = not len(line)
 
 
-def process_command_line(line):
+def process_command(line):
 
+    # split command (first word) from arguments
     cmd = line.split(' ', 1)[0]
     arg_str = line[len(cmd):].lstrip()
 
     if cmd == 'include':
-        process_include_command(arg_str)
+        # arg_str contains the filename to include
+        include_file(arg_str)
 
     elif cmd == 'define':
+        # arg_str contains the macro definition:
+        # <name> <value>
         name, value = [arg.strip() for arg in arg_str.split(' ', 1)]
-        process_define_command(name, value)
+        register_macro(name, value)
 
     elif cmd == 'style':
 
+        # arg_str contains the style definition:
+        # <style> | <attribute> | <value> | <target>
+
         try:
             arg_list = [arg.strip() for arg in arg_str.split('|')]
-            process_style_command(*arg_list)
+            register_style(*arg_list)
 
         except TypeError:
-            print('filename: {0}{3}  cmd: {1}{3}  arg_str: {2}{3}'.format(filename, cmd, arg_str, os.linesep))
+            print('filename: {0}{3}  cmd: {1}{3}  arg_str: {2}{3}'.format(
+                filename, cmd, arg_str, os.linesep))
             raise
 
     else:
         raise Exception('Invalid command: {}'.format(cmd))
 
 
-def process_graphviz_line(line, is_prev_line_blank=False):
+def process_graphviz(line, is_prev_line_blank=False):
 
     stripped = line.strip()
 
@@ -99,7 +107,7 @@ def process_graphviz_line(line, is_prev_line_blank=False):
     if is_prev_line_blank and not len(line):
         return
 
-    # remove indentation on request
+    # remove indentation if indicated
     if stripped.startswith(undo_indent_indicator):
         output = stripped[len(undo_indent_indicator):].lstrip()
     else:
@@ -115,7 +123,7 @@ def process_graphviz_line(line, is_prev_line_blank=False):
     print(output)
 
 
-def process_include_command(filename):
+def include_file(filename):
 
     # accept shell-ish directory variables
     filename = filename.replace('$HOME', home_dir)
@@ -126,7 +134,7 @@ def process_include_command(filename):
     process_file(filename)
 
 
-def process_define_command(name, value):
+def register_macro(name, value):
 
     # replace macro if exists
     for index, (n, v) in enumerate(macros):
@@ -151,7 +159,7 @@ def apply_macros(line):
     return output
 
 
-def process_style_command(style_name, attr_name, attr_value, target):
+def register_style(style_name, attr_name, attr_value, target):
 
     # add style on first assignment
     if not style_name in styles.keys():
@@ -204,6 +212,8 @@ def apply_styles(line):
 
     return output
 
+
+# entry point
 
 if len(sys.argv) == 2:
     filename = sys.argv[1]
