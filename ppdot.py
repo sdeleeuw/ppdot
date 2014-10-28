@@ -32,8 +32,8 @@ home_dir = os.path.expanduser('~')
 macros_dir = os.path.expanduser('~/.ppdot/macros')
 styles_dir = os.path.expanduser('~/.ppdot/styles')
 
-macros_set = []
-styles_set = {}
+macro_set = []
+style_set = {}
 
 
 def process_file(filename):
@@ -137,13 +137,13 @@ def include_file(filename):
 def register_macro(name, value):
 
     # replace macro if exists
-    for index, (n, v) in enumerate(macros_set):
+    for index, (n, v) in enumerate(macro_set):
         if n == name:
-            macros_set[index] = (name, value)
+            macro_set[index] = (name, value)
 
     # append macro if not exists
     else:
-        macros_set.append((name, value))
+        macro_set.append((name, value))
 
 
 def apply_macros(line):
@@ -151,7 +151,7 @@ def apply_macros(line):
     output = line
 
     # iterate macros reversed to allow nesting
-    for name, value in reversed(macros_set):
+    for name, value in reversed(macro_set):
 
         # search and replace, that is all
         output = output.replace(name, value)
@@ -162,20 +162,20 @@ def apply_macros(line):
 def register_style(style, attr, value, target):
 
     # add style on first assignment
-    if not style in styles_set.keys():
-        styles_set[style] = {}
+    if not style in style_set.keys():
+        style_set[style] = {}
 
     # add attribute on first assignment
-    if not attr in styles_set[style].keys():
-        styles_set[style][attr] = {}
+    if not attr in style_set[style].keys():
+        style_set[style][attr] = {}
 
     # update style properties
     if 'graph'[0] in target:
-        styles_set[style][attr]['graph_value'] = value
+        style_set[style][attr]['graph_value'] = value
     if 'node'[0] in target:
-        styles_set[style][attr]['node_value'] = value
+        style_set[style][attr]['node_value'] = value
     if 'edge'[0] in target:
-        styles_set[style][attr]['edge_value'] = value
+        style_set[style][attr]['edge_value'] = value
 
 
 def apply_styles(line):
@@ -183,7 +183,7 @@ def apply_styles(line):
     output = line
 
     # iterate through style-target combinations
-    for style in styles_set.keys():
+    for style in style_set.keys():
         for target in ['graph', 'node', 'edge']:
 
             # useful example: n:color_green
@@ -191,14 +191,14 @@ def apply_styles(line):
             replace_with = ''
 
             # construct attr=value statement list for the current target
-            for attr in styles_set[style].keys():
+            for attr in style_set[style].keys():
 
                 key = '{}_value'.format(target)
 
-                if key not in styles_set[style][attr]:
+                if key not in style_set[style][attr]:
                     continue
 
-                value = styles_set[style][attr][key]
+                value = style_set[style][attr][key]
 
                 if len(replace_with):
                     replace_with = '{}, {}={}'.format(replace_with, attr, value)
