@@ -170,11 +170,11 @@ def register_style(style, attr, value, target):
         styles_set[style][attr] = {}
 
     # update style properties
-    if 'g' in target:
+    if 'graph'[0] in target:
         styles_set[style][attr]['graph_value'] = value
-    if 'n' in target:
+    if 'node'[0] in target:
         styles_set[style][attr]['node_value'] = value
-    if 'e' in target:
+    if 'edge'[0] in target:
         styles_set[style][attr]['edge_value'] = value
 
 
@@ -184,23 +184,21 @@ def apply_styles(line):
 
     # iterate through style-target combinations
     for style in styles_set.keys():
-        for target in ['g', 'n', 'e']:
+        for target in ['graph', 'node', 'edge']:
 
             # useful example: n:color_green
-            search_for = '{}:{}'.format(target, style)
+            search_for = '{}:{}'.format(target[0], style)
             replace_with = ''
 
             # construct attr=value statement list for the current target
             for attr in styles_set[style].keys():
 
-                if target == 'g' and 'graph_value' in styles_set[style][attr]:
-                    value = styles_set[style][attr]['graph_value']
-                elif target == 'n' and 'node_value' in styles_set[style][attr]:
-                    value = styles_set[style][attr]['node_value']
-                elif target == 'e' and 'edge_value' in styles_set[style][attr]:
-                    value = styles_set[style][attr]['edge_value']
-                else:
+                key = '{}_value'.format(target)
+
+                if key not in styles_set[style][attr]:
                     continue
+
+                value = styles_set[style][attr][key]
 
                 if len(replace_with):
                     replace_with = '{}, {}={}'.format(replace_with, attr, value)
