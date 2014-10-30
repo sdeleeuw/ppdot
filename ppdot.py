@@ -25,6 +25,7 @@ import codecs
 import os
 import sys
 
+comment_indicator = '//-'
 cmd_indicator = '//!'
 undo_indent_indicator = '<<'
 
@@ -50,7 +51,12 @@ def process_file(filename):
             # remove leading and trailing whitespace
             stripped = line.strip()
 
-            if stripped.startswith(cmd_indicator):
+            if stripped.startswith(comment_indicator):
+
+                # line contains comment
+                pass
+
+            elif stripped.startswith(cmd_indicator):
 
                 # line contains preprocessor command
                 stripped = stripped[len(cmd_indicator):].lstrip()
