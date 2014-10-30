@@ -1,18 +1,36 @@
 //! style model     | shape     | "box"             | n
 //! style model     | style     | "filled, rounded" | n
-//! style one_one   | arrowtail | "none"            | e
-//! style one_one   | taillabel | " 1 "             | e
+
+//! style uses      | arrowtail | "none"            | e
+//! style uses      | arrowhead | "normal"          | e
+//! style uses      | style     | "dashed"          | e
+//! style uses      | label     | " <uses>"         | e
+
+//! style manages   | arrowtail | "none"            | e
+//! style manages   | arrowhead | "normal"          | e
+//! style manages   | style     | "dashed"          | e
+//! style manages   | label     | " <manages>"      | e
+
+//! style base_sub  | arrowtail | "onormal"         | e
+//! style base_sub  | arrowhead | "none"            | e
+//! style base_sub  | dir       | "back"            | e
+//! style base_sub  | label     | " <subclass of>"  | e
+
+//! style sub_base  | arrowhead | "onormal"         | e
+//! style sub_base  | label     | " <subclass of>"  | e
+
 //! style one_one   | arrowhead | "none"            | e
+//! style one_one   | taillabel | " 1 "             | e
 //! style one_one   | headlabel | " 1 "             | e
-//! style one_many  | arrowtail | "none"            | e
-//! style one_many  | taillabel | " 1 "             | e
+
 //! style one_many  | arrowhead | "none"            | e
+//! style one_many  | taillabel | " 1 "             | e
 //! style one_many  | headlabel | " * "             | e
-//! style many_one  | arrowtail | "none"            | e
-//! style many_one  | taillabel | " * "             | e
+
 //! style many_one  | arrowhead | "none"            | e
+//! style many_one  | taillabel | " * "             | e
 //! style many_one  | headlabel | " 1 "             | e
-//! style many_many | arrowtail | "none"            | e
-//! style many_many | taillabel | " * "             | e
+
 //! style many_many | arrowhead | "none"            | e
+//! style many_many | taillabel | " * "             | e
 //! style many_many | headlabel | " * "             | e
