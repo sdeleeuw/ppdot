@@ -86,6 +86,9 @@ def process_command(line):
         # arg_str contains the style definition:
         # <style> | <attribute> | <value> | <target>
 
+        # apply macros to style definition
+        arg_str = apply_macros(arg_str)
+
         try:
             arg_list = [arg.strip() for arg in arg_str.split('|')]
             register_style(*arg_list)
