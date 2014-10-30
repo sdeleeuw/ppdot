@@ -1,12 +1,26 @@
 //! style sans8   | fontname | "sans"  | gne
 //! style sans8   | fontsize | 8       | gne
+
 //! style sans10  | fontname | "sans"  | gne
 //! style sans10  | fontsize | 10      | gne
+
 //! style sans12  | fontname | "sans"  | gne
 //! style sans12  | fontsize | 12      | gne
+
 //! style serif8  | fontname | "serif" | gne
 //! style serif8  | fontsize | 8       | gne
+
 //! style serif10 | fontname | "serif" | gne
 //! style serif10 | fontsize | 10      | gne
+
 //! style serif12 | fontname | "serif" | gne
 //! style serif12 | fontsize | 12      | gne
+
+//! style mono8   | fontname | "mono"  | gne
+//! style mono8   | fontsize | 8       | gne
+
+//! style mono10  | fontname | "mono"  | gne
+//! style mono10  | fontsize | 10      | gne
+
+//! style mono12  | fontname | "mono"  | gne
+//! style mono12  | fontsize | 12      | gne
