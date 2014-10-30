@@ -1,6 +1,6 @@
-//! define #OP# <TABLE BORDER="0"><TR><TD ALIGN="left" BALIGN="left">
-//! define #O2# <TABLE BORDER="0"><TR><TD ALIGN="left" BALIGN="left" COLSPAN="2">
-//! define #O3# <TABLE BORDER="0"><TR><TD ALIGN="left" BALIGN="left" COLSPAN="3">
+//! define #OP# <TABLE CELLPADDING="1" CELLSPACING="1" BORDER="0"><TR><TD ALIGN="center" BALIGN="center">
+//! define #O2# <TABLE CELLPADDING="1" CELLSPACING="1" BORDER="0"><TR><TD ALIGN="center" BALIGN="center" COLSPAN="2">
+//! define #O3# <TABLE CELLPADDING="1" CELLSPACING="1" BORDER="0"><TR><TD ALIGN="center" BALIGN="center" COLSPAN="3">
 //! define #TR# </TD></TR><TR><TD ALIGN="left" BALIGN="left">
 //! define #TD# </TD><TD ALIGN="left" BALIGN="left">
 //! define #BR# <BR/>
