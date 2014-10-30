@@ -1,0 +1,42 @@
+// http://colorbrewer2.org/
+// classes:6, sequential, single hue, Red, 6-4-2
+
+//! define COLOR_RED1 #a50f15
+//! define COLOR_RED2 #fb6a4a
+//! define COLOR_RED3 #fcbba1
+
+// http://colorbrewer2.org/
+// classes:9, sequential, single hue, Orange, 7-5-3
+
+
+//! define COLOR_ORANGE1 #d94801
+//! define COLOR_ORANGE2 #fd8d3c
+//! define COLOR_ORANGE3 #fdd0a2
+
+// http://colorbrewer2.org/
+// classes:9, sequential, single hue, YlOrBr, 5-4-3
+
+//! define COLOR_YELLOW1 #fe9929
+//! define COLOR_YELLOW2 #fec44f
+//! define COLOR_YELLOW3 #fee391
+
+// http://colorbrewer2.org/
+// classes:6, sequential, single hue, Green, 6-4-2
+
+//! define COLOR_GREEN1 #006d2c
+//! define COLOR_GREEN2 #74c476
+//! define COLOR_GREEN3 #c7e9c0
+
+// http://colorbrewer2.org/
+// classes:6, sequential, single hue, Blue, 6-4-2
+
+//! define COLOR_BLUE1 #08519c
+//! define COLOR_BLUE2 #6baed6
+//! define COLOR_BLUE3 #c6dbef
+
+// http://colorbrewer2.org/
+// classes:6, sequential, single hue, Purples, 6-4-2
+
+//! define COLOR_VIOLET1 #54278f
+//! define COLOR_VIOLET2 #9e9ac8
+//! define COLOR_VIOLET3 #dadaeb
