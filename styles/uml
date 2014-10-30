@@ -1,0 +1,18 @@
+//! style model     | shape     | "box"             | n
+//! style model     | style     | "filled, rounded" | n
+//! style one_one   | arrowtail | "none"            | e
+//! style one_one   | taillabel | " 1 "             | e
+//! style one_one   | arrowhead | "none"            | e
+//! style one_one   | headlabel | " 1 "             | e
+//! style one_many  | arrowtail | "none"            | e
+//! style one_many  | taillabel | " 1 "             | e
+//! style one_many  | arrowhead | "none"            | e
+//! style one_many  | headlabel | " * "             | e
+//! style many_one  | arrowtail | "none"            | e
+//! style many_one  | taillabel | " * "             | e
+//! style many_one  | arrowhead | "none"            | e
+//! style many_one  | headlabel | " 1 "             | e
+//! style many_many | arrowtail | "none"            | e
+//! style many_many | taillabel | " * "             | e
+//! style many_many | arrowhead | "none"            | e
+//! style many_many | headlabel | " * "             | e

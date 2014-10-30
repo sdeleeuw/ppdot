@@ -1,0 +1,15 @@
+//! style red   | colorscheme   | "reds6"   | ne
+//! style red   | color         | "6"       | ne
+//! style red   | fillcolor     | "3"       | e
+//! style red   | fillcolor     | "4:2"     | n
+//! style red   | gradientangle | 135       | n
+//! style green | colorscheme   | "greens6" | ne
+//! style green | color         | "6"       | ne
+//! style green | fillcolor     | "3"       | e
+//! style green | fillcolor     | "4:2"     | n
+//! style green | gradientangle | 135       | n
+//! style blue  | colorscheme   | "blues6"  | ne
+//! style blue  | color         | "6"       | ne
+//! style blue  | fillcolor     | "3"       | e
+//! style blue  | fillcolor     | "4:2"     | n
+//! style blue  | gradientangle | 135       | n
