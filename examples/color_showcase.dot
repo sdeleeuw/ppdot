@@ -1,0 +1,66 @@
+//! include $MACROS/color-brewer
+//! include $MACROS/html
+//! include $STYLES/font
+//! include $STYLES/color
+//! include $STYLES/uml
+
+//! define NBOX shape="box", style="rounded"
+//! define FBOX shape="box", style="filled, rounded"
+
+digraph color_showcase {
+
+    graph   [g:sans8, bgcolor="#EEEEEE"];
+    node    [g:sans8, penwidth=1.5];
+    edge    [g:sans8, penwidth=1.5];
+
+    Red     [NBOX, label=<Red>,    n:red,    n:font_red];
+    Orange  [NBOX, label=<Orange>, n:orange, n:font_orange];
+    Yellow  [NBOX, label=<Yellow>, n:yellow, n:font_yellow];
+    Green   [NBOX, label=<Green>,  n:green,  n:font_green];
+    Blue    [NBOX, label=<Blue>,   n:blue,   n:font_blue];
+    Violet  [NBOX, label=<Violet>, n:violet, n:font_violet];
+
+    Red2    [FBOX, label=<<B>Red</B>>,    n:red,    n:dark_red];
+    Orange2 [FBOX, label=<<B>Orange</B>>, n:orange, n:dark_orange];
+    Yellow2 [FBOX, label=<<B>Yellow</B>>, n:yellow, n:dark_yellow];
+    Green2  [FBOX, label=<<B>Green</B>>,  n:green,  n:dark_green];
+    Blue2   [FBOX, label=<<B>Blue</B>>,   n:blue,   n:dark_blue];
+    Violet2 [FBOX, label=<<B>Violet</B>>, n:violet, n:dark_violet];
+
+    Red3    [FBOX, label=<Red>,    n:red,    n:light_red];
+    Orange3 [FBOX, label=<Orange>, n:orange, n:light_orange];
+    Yellow3 [FBOX, label=<Yellow>, n:yellow, n:light_yellow];
+    Green3  [FBOX, label=<Green>,  n:green,  n:light_green];
+    Blue3   [FBOX, label=<Blue>,   n:blue,   n:light_blue];
+    Violet3 [FBOX, label=<Violet>, n:violet, n:light_violet];
+
+    Red4    [FBOX, label=<<B>Red</B>>,    n:red,    n:font_red,    n:gradient_red];
+    Orange4 [FBOX, label=<<B>Orange</B>>, n:orange, n:font_orange, n:gradient_orange];
+    Yellow4 [FBOX, label=<<B>Yellow</B>>, n:yellow, n:font_yellow, n:gradient_yellow];
+    Green4  [FBOX, label=<<B>Green</B>>,  n:green,  n:font_green,  n:gradient_green];
+    Blue4   [FBOX, label=<<B>Blue</B>>,   n:blue,   n:font_blue,   n:gradient_blue];
+    Violet4 [FBOX, label=<<B>Violet</B>>, n:violet, n:font_violet, n:gradient_violet];
+
+    Red     -> Red2    [e:red];
+    Orange  -> Orange2 [e:orange];
+    Yellow  -> Yellow2 [e:yellow];
+    Green   -> Green2  [e:green];
+    Blue    -> Blue2   [e:blue];
+    Violet  -> Violet2 [e:violet];
+
+    Red2    -> Red3    [e:red,    e:fill_red];
+    Orange2 -> Orange3 [e:orange, e:fill_orange];
+    Yellow2 -> Yellow3 [e:yellow, e:fill_yellow];
+    Green2  -> Green3  [e:green,  e:fill_green];
+    Blue2   -> Blue3   [e:blue,   e:fill_blue];
+    Violet2 -> Violet3 [e:violet, e:fill_violet];
+
+    Red3    -> Red4;
+    Orange3 -> Orange4;
+    Yellow3 -> Yellow4;
+    Green3  -> Green4;
+    Blue3   -> Blue4;
+    Violet3 -> Violet4;
+
+}
+
