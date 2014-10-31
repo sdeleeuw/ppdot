@@ -8,7 +8,6 @@
 //- http://colorbrewer2.org/
 //- classes:9, sequential, single hue, Orange, 7-5-3
 
-
 //! define COLOR_ORANGE1 #d94801
 //! define COLOR_ORANGE2 #fd8d3c
 //! define COLOR_ORANGE3 #fdd0a2
