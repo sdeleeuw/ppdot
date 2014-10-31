@@ -1,3 +1,6 @@
+//! define COLOR_FOREGROUND #333333
+//! define COLOR_BACKGROUND #EEEEEE
+
 //- http://colorbrewer2.org/
 //- classes:6, sequential, single hue, Red, 6-4-2
 

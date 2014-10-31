@@ -1,3 +1,6 @@
+//! define COLOR_FOREGROUND #B8B8B8
+//! define COLOR_BACKGROUND #282828
+
 //! define COLOR_RED1 #ab4642
 //! define COLOR_RED2 #ab4642
 //! define COLOR_RED3 #ab4642

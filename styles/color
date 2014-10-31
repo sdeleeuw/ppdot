@@ -1,3 +1,6 @@
+//! style fgcolor         | color         | "COLOR_FOREGROUND"            | gne
+//! style bgcolor         | bgcolor       | "COLOR_BACKGROUND"            | gne
+
 //! style red             | color         | "COLOR_RED1"                  | ne
 //! style font_red        | fontcolor     | "COLOR_RED1"                  | ne
 //! style fill_red        | fillcolor     | "COLOR_RED3"                  | e
