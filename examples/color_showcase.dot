@@ -1,8 +1,6 @@
-//! include $MACROS/color-brewer
-//! include $MACROS/html
 //! include $STYLES/font
+//! include $MACROS/color-brewer
 //! include $STYLES/color
-//! include $STYLES/uml
 
 //! define NBOX shape="box", style="rounded"
 //! define FBOX shape="box", style="filled, rounded"
