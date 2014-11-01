@@ -1,3 +1,9 @@
+//- base color scheme:
+//- http://ethanschoonover.com/solarized
+
+//- darker shades:
+//- http://www.w3schools.com/tags/ref_colorpicker.asp
+
 //! define COLOR_FOREGROUND #93a1a1
 //! define COLOR_BACKGROUND #002b36
 
