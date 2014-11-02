@@ -20,9 +20,9 @@ ppdot also include a carefully selected set of macros and styles.
 color schemes
 -------------
 
-![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_brewer.svg)
+![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_brewer.svg)
 
-![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_solarized.svg)
+![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_solarized.svg)
 
-![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_base16.svg)
+![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_base16.svg)
 
