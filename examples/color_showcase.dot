@@ -7,9 +7,9 @@
 
 digraph color_showcase {
 
-    graph   [g:sans8, g:bgcolor];
-    node    [g:sans8, n:fgcolor, n:bgcolor, penwidth=1.5];
-    edge    [g:sans8, e:fgcolor, e:bgcolor, penwidth=1.5];
+    graph   [g:sans10, g:bgcolor];
+    node    [g:sans10, n:fgcolor, n:bgcolor, penwidth=1.5];
+    edge    [g:sans10, e:fgcolor, e:bgcolor, penwidth=1.5];
 
     Red     [NBOX, label=<Red>,           n:red,    n:font_red];
     Orange  [NBOX, label=<Orange>,        n:orange, n:font_orange];
