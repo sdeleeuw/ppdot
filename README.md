@@ -20,9 +20,15 @@ ppdot also include a carefully selected set of macros and styles.
 color schemes
 -------------
 
+**brewer**
+
 ![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_brewer.svg)
 
+**solarized**
+
 ![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_solarized.svg)
+
+**base16**
 
 ![](http://sdeleeuw.github.io/ppdot/examples/color_showcase_base16.svg)
 
