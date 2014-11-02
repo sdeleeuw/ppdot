@@ -17,3 +17,12 @@ ppdot also include a carefully selected set of macros and styles.
 
 (this documentation is a work in progress ...)
 
+color schemes
+-------------
+
+![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_brewer.svg)
+
+![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_solarized.svg)
+
+![](https://raw.githubusercontent.com/sdeleeuw/ppdot/master/examples/color_showcase_base16.svg)
+
