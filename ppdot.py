@@ -2,7 +2,7 @@
 
 """
 ppdot - Simple Graphviz pre-processor written in Python
-Copyright (C) 2014  Sander de Leeuw <s.deleeuw@gmail.com>
+Copyright (C) 2014 - 2016  Sander de Leeuw <s.deleeuw@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -11,11 +11,11 @@ the Free Software Foundation, either version 3 of the License, or
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with this program. If not, see <http://www.gnu.org/licenses/>.
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from __future__ import unicode_literals
@@ -25,8 +25,9 @@ import codecs
 import os
 import sys
 
+
 comment_indicator = '//-'
-cmd_indicator = '//!'
+command_indicator = '//!'
 undo_indent_indicator = '<<'
 
 home_dir = os.path.expanduser('~')
@@ -39,36 +40,34 @@ style_set = {}
 
 def process_file(filename):
 
-    is_prev_line_blank = True
+    is_previous_line_blank = True
 
-    # process file line by line
     with codecs.open(filename, 'r', encoding='utf-8') as file_obj:
         for line in file_obj:
 
-            # remove line seperator
+            # strip line separator and whitespace
             line = line.rstrip(os.linesep)
-
-            # remove leading and trailing whitespace
             stripped = line.strip()
 
-            if stripped.startswith(comment_indicator):
+            is_current_line_blank = not len(stripped)
 
-                # line contains comment
+            # skip repeating blank lines
+            if is_current_line_blank and is_previous_line_blank:
                 pass
 
-            elif stripped.startswith(cmd_indicator):
+            # skip comments
+            elif stripped.startswith(comment_indicator):
+                pass
 
-                # line contains preprocessor command
-                stripped = stripped[len(cmd_indicator):].lstrip()
+            # process commands
+            elif stripped.startswith(command_indicator):
+                stripped = stripped[len(command_indicator):].lstrip()
                 process_command(stripped)
 
+            # process graphviz data
             else:
-
-                # line contains graphviz data
-                process_graphviz(line, is_prev_line_blank)
-
-                # remember if line is blank
-                is_prev_line_blank = not len(line)
+                process_graphviz(line)
+                is_previous_line_blank = is_current_line_blank
 
 
 def process_command(line):
@@ -108,13 +107,9 @@ def process_command(line):
         raise Exception('Invalid command: {}'.format(cmd))
 
 
-def process_graphviz(line, is_prev_line_blank=False):
+def process_graphviz(line):
 
     stripped = line.strip()
-
-    # skip extra empty lines
-    if is_prev_line_blank and not len(line):
-        return
 
     # remove indentation if indicated
     if stripped.startswith(undo_indent_indicator):
