@@ -1,0 +1,58 @@
+//- Shapes:
+
+//! style terminal | shape     | box                  | n
+//! style terminal | style     | "filled,rounded"     | n
+//! style terminal | penwidth  | 1.5                  | n
+//! style terminal | color     | "m:red3"             | n
+//! style terminal | fillcolor | "m:red:m:red2"       | n
+//! style terminal | fontname  | m:fontname           | n
+//! style terminal | fontsize  | m:fontsize           | n
+
+//! style process  | shape     | box                  | n
+//! style process  | style     | "filled"             | n
+//! style process  | penwidth  | 1.5                  | n
+//! style process  | color     | "m:blue3"            | n
+//! style process  | fillcolor | "m:blue:m:blue2"     | n
+//! style process  | fontname  | m:fontname           | n
+//! style process  | fontsize  | m:fontsize           | n
+
+//! style decision | shape     | diamond              | n
+//! style decision | style     | "filled,rounded"     | n
+//! style decision | penwidth  | 1.5                  | n
+//! style decision | color     | "m:yellow3"          | n
+//! style decision | fillcolor | "m:yellow:m:yellow2" | n
+//! style decision | fontname  | m:fontname           | n
+//! style decision | fontsize  | m:fontsize           | n
+
+//- Colors:
+
+//! style red      | color     | "m:red3"             | n
+//! style red      | fillcolor | "m:red:m:red2"       | n
+
+//! style yellow   | color     | "m:yellow3"          | n
+//! style yellow   | fillcolor | "m:yellow:m:yellow2" | n
+
+//! style blue     | color     | "m:blue3"            | n
+//! style blue     | fillcolor | "m:blue:m:blue2"     | n
+
+//! style orange   | color     | "m:orange3"          | n
+//! style orange   | fillcolor | "m:orange:m:orange2" | n
+
+//! style green    | color     | "m:green3"           | n
+//! style green    | fillcolor | "m:green:m:green2"   | n
+
+//! style violet   | color     | "m:violet3"          | n
+//! style violet   | fillcolor | "m:violet:m:violet2" | n
+
+//- Edges:
+
+//! style solid    | color     | "m:blue3"            | e
+//! style solid    | penwidth  | 1.5                  | e
+//! style solid    | fontname  | m:fontname           | e
+//! style solid    | fontsize  | m:fontsize           | e
+
+//! style dashed   | color     | "m:blue3"            | e
+//! style dashed   | penwidth  | 1.5                  | e
+//! style dashed   | style     | dashed               | e
+//! style dashed   | fontname  | m:fontname           | e
+//! style dashed   | fontsize  | m:fontsize           | e

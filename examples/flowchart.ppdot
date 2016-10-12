@@ -1,0 +1,26 @@
+//! define m:fontname sans
+//! define m:fontsize 10
+
+//! include $MACROS/scheme-base16
+//! include $STYLES/flowchart
+
+
+digraph flowchart_example {
+
+    node [n:process];
+    edge [e:solid];
+
+    LampDoesNotWork [n:terminal, label="Lamp doesn't work"];
+    LampPluggedIn [n:decision, label="Lamp plugged in"];
+    BulbBurnedOut [n:decision, label="Bulb burned out"];
+    PlugInLamp [label="Plug in lamp"];
+    ReplaceBulb [label="Replace bulb"];
+    RepairLamp [label="Repair lamp"];
+
+    LampDoesNotWork -> LampPluggedIn;
+    LampPluggedIn -> PlugInLamp [label="No"];
+    LampPluggedIn -> BulbBurnedOut [label="Yes"];
+    BulbBurnedOut -> ReplaceBulb [label="Yes"];
+    BulbBurnedOut -> RepairLamp [e:dashed, label="No"];
+
+}

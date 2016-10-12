@@ -1,0 +1,30 @@
+//- base color scheme:
+//-   https://github.com/chriskempson/base16
+
+//! define m:red     #ab4642
+//! define m:yellow  #f7ca88
+//! define m:blue    #7cafc2
+//! define m:orange  #dc9656
+//! define m:green   #a1b56c
+//! define m:violet  #ba8baf
+
+//- darker shades:
+//-   http://www.w3schools.com/tags/ref_colorpicker.asp
+
+//! define m:red2    #813532
+//! define m:red3    #5c2624
+
+//! define m:yellow2 #f3b558
+//! define m:yellow3 #f0a028
+
+//! define m:blue2   #5295ad
+//! define m:blue3   #41778b
+
+//! define m:orange2 #d47d2b
+//! define m:orange3 #a96423
+
+//! define m:green2  #84994d
+//! define m:green3  #67773c
+
+//! define m:violet2 #9f6091
+//! define m:violet3 #804d74
