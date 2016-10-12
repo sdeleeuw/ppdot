@@ -62,65 +62,56 @@ def process_file(filename):
 
             # process graphviz data
             else:
+
+                # undo indent on request
+                if stripped.startswith(undo_indent_indicator):
+                    line = stripped[len(undo_indent_indicator):].lstrip()
+
                 process_graphviz(line)
                 is_previous_line_blank = is_current_line_blank
 
 
 def process_command(line):
 
-    # split command (first word) from arguments
-    cmd = line.split(' ', 1)[0]
-    arg_str = line[len(cmd):].lstrip()
+    # split command (first word) from arguments (remainder)
+    command = line.split(' ', 1)[0]
+    args_str = line[len(command):].lstrip()
 
-    if cmd == 'include':
-        # arg_str contains the filename to include
-        include_file(arg_str)
+    if command == 'include':
+        # args_str contains the filename to include
+        include_file(args_str)
 
-    elif cmd == 'define':
-        # arg_str contains the macro definition:
+    elif command == 'define':
+        # args_str contains the macro definition:
         # <name> <value>
-        name, value = [arg.strip() for arg in arg_str.split(' ', 1)]
+        name, value = tuple(arg.strip() for arg in args_str.split(' ', 1))
         register_macro(name, value)
 
-    elif cmd == 'style':
-
-        # arg_str contains the style definition:
+    elif command == 'style':
+        # args_str contains the style definition:
         # <style> | <attribute> | <value> | <target>
 
         # apply macros to style definition
-        arg_str = apply_macros(arg_str)
+        args_str = apply_macros(args_str)
 
         try:
-            arg_list = [arg.strip() for arg in arg_str.split('|')]
-            register_style(*arg_list)
+            args = tuple(arg.strip() for arg in args_str.split('|'))
+            register_style(*args)
 
         except TypeError:
-            print('filename: {0}{3}  cmd: {1}{3}  arg_str: {2}{3}'.format(
-                filename, cmd, arg_str, os.linesep))
+            print('DEBUG: filename={}, command={}, args_str={}'.format(filename, command, args_str))
             raise
 
     else:
-        raise Exception('Invalid command: {}'.format(cmd))
+        raise Exception('Invalid command: {}'.format(command))
 
 
 def process_graphviz(line):
 
-    stripped = line.strip()
+    line = apply_macros(line)
+    line = apply_styles(line)
 
-    # remove indentation if indicated
-    if stripped.startswith(undo_indent_indicator):
-        output = stripped[len(undo_indent_indicator):].lstrip()
-    else:
-        output = line
-
-    # apply macros
-    output = apply_macros(output)
-
-    # apply styles
-    output = apply_styles(output)
-
-    # print to stdout
-    print(output)
+    print(line)
 
 
 def include_file(filename):
@@ -165,11 +156,11 @@ def apply_macros(line):
 def register_style(style, attr, value, target):
 
     # add style on first assignment
-    if not style in style_set.keys():
+    if style not in style_set.keys():
         style_set[style] = {}
 
     # add attribute on first assignment
-    if not attr in style_set[style].keys():
+    if attr not in style_set[style].keys():
         style_set[style][attr] = {}
 
     # update style properties
@@ -223,4 +214,3 @@ else:
     sys.exit(1)
 
 process_file(filename)
-
