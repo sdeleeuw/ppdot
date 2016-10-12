@@ -30,10 +30,6 @@ comment_indicator = '//-'
 command_indicator = '//!'
 undo_indent_indicator = '<<'
 
-home_dir = os.path.expanduser('~')
-macros_dir = os.path.expanduser('~/.ppdot/macros')
-styles_dir = os.path.expanduser('~/.ppdot/styles')
-
 macro_set = []
 style_set = {}
 
@@ -129,10 +125,13 @@ def process_graphviz(line):
 
 def include_file(filename):
 
+    # lookup user's home directory
+    home = os.path.expanduser('~')
+
     # accept shell-ish directory variables
-    filename = filename.replace('$HOME', home_dir)
-    filename = filename.replace('$MACROS', macros_dir)
-    filename = filename.replace('$STYLES', styles_dir)
+    filename = filename.replace('$HOME', home)
+    filename = filename.replace('$MACROS', '{}/.ppdot/macros'.format(home))
+    filename = filename.replace('$STYLES', '{}/.ppdot/styles'.format(home))
 
     # process included file
     process_file(filename)
