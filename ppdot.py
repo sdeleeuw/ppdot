@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from __future__ import unicode_literals
 from __future__ import print_function
 
+import argparse
 import codecs
 import os
-import sys
 
 
 comment_indicator = '//-'
@@ -99,7 +99,7 @@ def process_command(line):
             register_style(*args)
 
         except TypeError:
-            print('DEBUG: filename={}, command={}, args_str={}'.format(filename, command, args_str))
+            print('DEBUG: command={}, args_str={}'.format(command, args_str))
             raise
 
     else:
@@ -207,10 +207,9 @@ def apply_styles(line):
 
 # entry point
 
-if len(sys.argv) == 2:
-    filename = sys.argv[1]
-else:
-    print('usage: {} <filename>'.format(sys.argv[0]))
-    sys.exit(1)
+parser = argparse.ArgumentParser()
+parser.add_argument('filename')
 
-process_file(filename)
+script_args = parser.parse_args()
+
+process_file(script_args.filename)
