@@ -1,5 +1,6 @@
 //- base color scheme:
-//-   https://github.com/chriskempson/base16
+//-  https://github.com/chriskempson/base16
+//- lightness variants calculated with lightness.py script
 
 //! define m:red     #ab4642
 //! define m:yellow  #f7ca88
@@ -8,23 +9,15 @@
 //! define m:green   #a1b56c
 //! define m:violet  #ba8baf
 
-//- darker shades:
-//-   http://www.w3schools.com/tags/ref_colorpicker.asp
-
-//! define m:red2    #813532
-//! define m:red3    #5c2624
-
-//! define m:yellow2 #f3b558
-//! define m:yellow3 #f0a028
-
-//! define m:blue2   #5295ad
-//! define m:blue3   #41778b
-
-//! define m:orange2 #d47d2b
-//! define m:orange3 #a96423
-
-//! define m:green2  #84994d
-//! define m:green3  #67773c
-
-//! define m:violet2 #9f6091
-//! define m:violet3 #804d74
+//! define m:red2    #c97773
+//! define m:red3    #712e2b
+//! define m:yellow2 #fcebd2
+//! define m:yellow3 #f1a83d
+//! define m:blue2   #b2d0db
+//! define m:blue3   #4b8aa2
+//! define m:orange2 #e9bf98
+//! define m:orange3 #bb6d26
+//! define m:green2  #c3cfa1
+//! define m:green3  #788b45
+//! define m:violet2 #d7bdd1
+//! define m:violet3 #995b8b

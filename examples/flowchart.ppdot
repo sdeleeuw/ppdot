@@ -1,5 +1,5 @@
 //! define m:fontname sans
-//! define m:fontsize 10
+//! define m:fontsize 12
 
 //! include $MACROS/scheme-base16
 //! include $STYLES/flowchart
@@ -7,20 +7,31 @@
 
 digraph flowchart_example {
 
-    node [n:process];
-    edge [e:solid];
+    label = "Flowchart Example";
+    labelloc = t;
+    labeljust = r;
 
-    LampDoesNotWork [n:terminal, label="Lamp doesn't work"];
-    LampPluggedIn [n:decision, label="Lamp plugged in"];
-    BulbBurnedOut [n:decision, label="Bulb burned out"];
+    graph [bgcolor="#EEEEEE:#DDDDDD"];
+    node [n:process];
+    edge [e:solid, e:blue];
+
+    LampDoesNotWork [n:start, label="Lamp doesn't work"];
+    LampPluggedIn [n:decision, label="Lamp plugged in?"];
+    BulbBurnedOut [n:decision, label="Bulb burned out?"];
     PlugInLamp [label="Plug in lamp"];
     ReplaceBulb [label="Replace bulb"];
+    Stock [n:inout, label="Stock"];
     RepairLamp [label="Repair lamp"];
+    LampWorks [n:end, label="Lamp works"];
 
     LampDoesNotWork -> LampPluggedIn;
     LampPluggedIn -> PlugInLamp [label="No"];
+    PlugInLamp -> LampWorks;
     LampPluggedIn -> BulbBurnedOut [label="Yes"];
     BulbBurnedOut -> ReplaceBulb [label="Yes"];
-    BulbBurnedOut -> RepairLamp [e:dashed, label="No"];
+    ReplaceBulb -> Stock [e:dashed];
+    ReplaceBulb -> LampWorks;
+    BulbBurnedOut -> RepairLamp [label="No"];
+    RepairLamp -> LampWorks;
 
 }
