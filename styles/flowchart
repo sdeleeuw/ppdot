@@ -1,89 +1,57 @@
-//- Graph:
+//- Base:
 
-//! style flowchart | bgcolor    | m:bgcolor            | g
-//! style flowchart | label      | m:title              | g
-//! style flowchart | labelloc   | t                    | g
-//! style flowchart | labeljust  | r                    | g
-//! style flowchart | fontname   | m:fontname           | g
-//! style flowchart | fontsize   | m:fontsize           | g
-
-//- Shapes:
-
-//! style terminal  | shape      | box                  | n
-//! style terminal  | style      | "filled,rounded"     | n
-//! style terminal  | penwidth   | 1.5                  | n
-//! style terminal  | color      | "m:red3"             | n
-//! style terminal  | fillcolor  | "m:red2:m:red"       | n
-//! style terminal  | fontname   | m:fontname           | n
-//! style terminal  | fontsize   | m:fontsize           | n
-
-//! style start     | shape      | box                  | n
-//! style start     | style      | "filled,rounded"     | n
-//! style start     | penwidth   | 1.5                  | n
-//! style start     | color      | "m:red3"             | n
-//! style start     | fillcolor  | "m:red2:m:red"       | n
-//! style start     | fontname   | m:fontname           | n
-//! style start     | fontsize   | m:fontsize           | n
-
-//! style end       | shape      | box                  | n
-//! style end       | style      | "filled,rounded"     | n
-//! style end       | penwidth   | 1.5                  | n
-//! style end       | color      | "m:green3"           | n
-//! style end       | fillcolor  | "m:green2:m:green"   | n
-//! style end       | fontname   | m:fontname           | n
-//! style end       | fontsize   | m:fontsize           | n
-
-//! style process   | shape      | box                  | n
-//! style process   | style      | "filled"             | n
-//! style process   | penwidth   | 1.5                  | n
-//! style process   | color      | "m:blue3"            | n
-//! style process   | fillcolor  | "m:blue2:m:blue"     | n
-//! style process   | fontname   | m:fontname           | n
-//! style process   | fontsize   | m:fontsize           | n
-
-//! style decision  | shape      | diamond              | n
-//! style decision  | style      | "filled,rounded"     | n
-//! style decision  | penwidth   | 1.5                  | n
-//! style decision  | color      | "m:yellow3"          | n
-//! style decision  | fillcolor  | "m:yellow2:m:yellow" | n
-//! style decision  | fontname   | m:fontname           | n
-//! style decision  | fontsize   | m:fontsize           | n
-
-//! style inout     | shape      | parallelogram        | n
-//! style inout     | style      | "filled"             | n
-//! style inout     | penwidth   | 1.5                  | n
-//! style inout     | color      | "m:violet3"          | n
-//! style inout     | fillcolor  | "m:violet2:m:violet" | n
-//! style inout     | fontname   | m:fontname           | n
-//! style inout     | fontsize   | m:fontsize           | n
+//! style base | shape    | box        | n
+//! style base | style    | "filled"   | n
+//! style base | penwidth | 1.5        | ne
+//! style base | fontname | m:fontname | ne
+//! style base | fontsize | m:fontsize | ne
 
 //- Colors:
 
-//! style red       | color      | "m:red3"             | ne
-//! style red       | fillcolor  | "m:red2:m:red"       | n
+//! style red    | color     | "m:red3"             | ne
+//! style red    | fillcolor | "m:red2:m:red"       | n
+//! style yellow | color     | "m:yellow3"          | ne
+//! style yellow | fillcolor | "m:yellow2:m:yellow" | n
+//! style blue   | color     | "m:blue3"            | ne
+//! style blue   | fillcolor | "m:blue2:m:blue"     | n
+//! style orange | color     | "m:orange3"          | ne
+//! style orange | fillcolor | "m:orange2:m:orange" | n
+//! style green  | color     | "m:green3"           | ne
+//! style green  | fillcolor | "m:green2:m:green"   | n
+//! style violet | color     | "m:violet3"          | ne
+//! style violet | fillcolor | "m:violet2:m:violet" | n
 
-//! style yellow    | color      | "m:yellow3"          | ne
-//! style yellow    | fillcolor  | "m:yellow2:m:yellow" | n
+//- Graph:
 
-//! style blue      | color      | "m:blue3"            | ne
-//! style blue      | fillcolor  | "m:blue2:m:blue"     | n
+//! style flowchart | label     | m:title    | g
+//! style flowchart | labelloc  | t          | g
+//! style flowchart | labeljust | r          | g
+//! style flowchart | fontname  | m:fontname | g
+//! style flowchart | fontsize  | m:fontsize | g
+//! style flowchart | bgcolor   | m:bgcolor  | g
 
-//! style orange    | color      | "m:orange3"          | ne
-//! style orange    | fillcolor  | "m:orange2:m:orange" | n
+//- Nodes:
 
-//! style green     | color      | "m:green3"           | ne
-//! style green     | fillcolor  | "m:green2:m:green"   | n
+//! copy base     | terminal | n
+//! copy red      | terminal | n
+//! copy terminal | start    | n
+//! copy terminal | end      | n
+//! copy green    | end      | n
+//! copy base     | process  | n
+//! copy blue     | process  | n
+//! copy base     | decision | n
+//! copy yellow   | decision | n
+//! copy base     | inout    | n
+//! copy violet   | inout    | n
 
-//! style violet    | color      | "m:violet3"          | ne
-//! style violet    | fillcolor  | "m:violet2:m:violet" | n
+//! style decision | shape | diamond          | n
+//! style inout    | shape | parallelogram    | n
+//! style terminal | style | "filled,rounded" | n
+//! style decision | style | "filled,rounded" | n
 
 //- Edges:
 
-//! style solid     | penwidth  | 1.5                   | e
-//! style solid     | fontname  | m:fontname            | e
-//! style solid     | fontsize  | m:fontsize            | e
+//! copy base | solid  | e
+//! copy base | dashed | e
 
-//! style dashed    | style     | dashed                | e
-//! style dashed    | penwidth  | 1.5                   | e
-//! style dashed    | fontname  | m:fontname            | e
-//! style dashed    | fontsize  | m:fontsize            | e
+//! style dashed | style | dashed | e

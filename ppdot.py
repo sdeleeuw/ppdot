@@ -102,6 +102,12 @@ def process_command(line):
             print('DEBUG: command={}, args_str={}'.format(command, args_str))
             raise
 
+    elif command == 'copy':
+        # args_str contains source and destination styles and target filter:
+        # <src> <dst> <target filter>
+        src, dst, target_filter = tuple(arg.strip() for arg in args_str.split('|'))
+        copy_style(src, dst, target_filter)
+
     else:
         raise Exception('Invalid command: {}'.format(command))
 
@@ -170,6 +176,24 @@ def register_style(style, attr, value, target):
         style_set[style][attr]['node_value'] = value
     if 'edge'[0] in target:
         style_set[style][attr]['edge_value'] = value
+
+
+def copy_style(src, dst, target_filter):
+
+    for target in ['graph', 'node', 'edge']:
+
+        if target[0] not in target_filter:
+            continue
+
+        for attr in style_set[src].keys():
+
+            key = '{}_value'.format(target)
+
+            if key not in style_set[src][attr]:
+                continue
+
+            value = style_set[src][attr][key]
+            register_style(dst, attr, value, target[0])
 
 
 def apply_styles(line):

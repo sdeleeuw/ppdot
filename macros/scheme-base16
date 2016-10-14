@@ -2,22 +2,22 @@
 //-  https://github.com/chriskempson/base16
 //- lightness variants calculated with lightness.py script
 
-//! define m:red     #ab4642
-//! define m:yellow  #f7ca88
-//! define m:blue    #7cafc2
-//! define m:orange  #dc9656
-//! define m:green   #a1b56c
-//! define m:violet  #ba8baf
+//! define m:red      #ab4642
+//! define m:yellow   #f7ca88
+//! define m:blue     #7cafc2
+//! define m:orange   #dc9656
+//! define m:green    #a1b56c
+//! define m:violet   #ba8baf
 
-//! define m:red2    #c97773
-//! define m:red3    #712e2b
-//! define m:yellow2 #fcebd2
-//! define m:yellow3 #f1a83d
-//! define m:blue2   #b2d0db
-//! define m:blue3   #4b8aa2
-//! define m:orange2 #e9bf98
-//! define m:orange3 #bb6d26
-//! define m:green2  #c3cfa1
-//! define m:green3  #788b45
-//! define m:violet2 #d7bdd1
-//! define m:violet3 #995b8b
+//! define m:red2     #c97773
+//! define m:red3     #712e2b
+//! define m:yellow2  #fcebd2
+//! define m:yellow3  #f1a83d
+//! define m:blue2    #b2d0db
+//! define m:blue3    #4b8aa2
+//! define m:orange2  #e9bf98
+//! define m:orange3  #bb6d26
+//! define m:green2   #c3cfa1
+//! define m:green3   #788b45
+//! define m:violet2  #d7bdd1
+//! define m:violet3  #995b8b
