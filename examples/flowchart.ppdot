@@ -1,5 +1,8 @@
+
+//! define m:title <<b>Flowchart Example</b>>
 //! define m:fontname sans
-//! define m:fontsize 12
+//! define m:fontsize 10
+//! define m:bgcolor "#EEEEEE:#DDDDDD"
 
 //! include $MACROS/scheme-base16
 //! include $STYLES/flowchart
@@ -7,11 +10,7 @@
 
 digraph flowchart_example {
 
-    label = "Flowchart Example";
-    labelloc = t;
-    labeljust = r;
-
-    graph [bgcolor="#EEEEEE:#DDDDDD"];
+    graph [g:flowchart];
     node [n:process];
     edge [e:solid, e:blue];
 
