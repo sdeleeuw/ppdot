@@ -33,42 +33,66 @@ undo_indent_indicator = '<<'
 macro_set = []
 style_set = {}
 
+output = None
+
 
 def process_file(filename):
 
+    with codecs.open(filename, 'r', encoding='utf-8') as file_obj:
+        string = file_obj.read()
+
+    process_string(string)
+
+    return os.linesep.join(output)
+
+
+def process_string(string):
+
+    lines = string.splitlines()
+    process_lines(lines)
+
+    return os.linesep.join(output)
+
+
+def process_lines(lines):
+
+    global output
+    output = []
+
     is_previous_line_blank = True
 
-    with codecs.open(filename, 'r', encoding='utf-8') as file_obj:
-        for line in file_obj:
+    for line in lines:
 
-            # strip line separator and whitespace
-            line = line.rstrip(os.linesep)
-            stripped = line.strip()
+        # strip line separator and whitespace
+        line = line.rstrip(os.linesep)
+        stripped = line.strip()
 
-            is_current_line_blank = not len(stripped)
+        is_current_line_blank = not len(stripped)
 
-            # skip repeating blank lines
-            if is_current_line_blank and is_previous_line_blank:
-                pass
+        # skip repeating blank lines
+        if is_current_line_blank and is_previous_line_blank:
+            pass
 
-            # skip comments
-            elif stripped.startswith(comment_indicator):
-                pass
+        # skip comments
+        elif stripped.startswith(comment_indicator):
+            pass
 
-            # process commands
-            elif stripped.startswith(command_indicator):
-                stripped = stripped[len(command_indicator):].lstrip()
-                process_command(stripped)
+        # process commands
+        elif stripped.startswith(command_indicator):
+            stripped = stripped[len(command_indicator):].lstrip()
+            process_command(stripped)
 
-            # process graphviz data
-            else:
+        # process graphviz data
+        else:
 
-                # undo indent on request
-                if stripped.startswith(undo_indent_indicator):
-                    line = stripped[len(undo_indent_indicator):].lstrip()
+            # undo indent on request
+            if stripped.startswith(undo_indent_indicator):
+                line = stripped[len(undo_indent_indicator):].lstrip()
 
-                process_graphviz(line)
-                is_previous_line_blank = is_current_line_blank
+            process_graphviz(line)
+            is_previous_line_blank = is_current_line_blank
+
+    return os.linesep.join(output)
 
 
 def process_command(line):
@@ -117,7 +141,7 @@ def process_graphviz(line):
     line = apply_macros(line)
     line = apply_styles(line)
 
-    print(line)
+    output.append(line)
 
 
 def include_file(filename):
@@ -148,15 +172,15 @@ def register_macro(name, value):
 
 def apply_macros(line):
 
-    output = line
+    result = line
 
     # iterate macros reversed to allow nesting
     for name, value in reversed(macro_set):
 
         # search and replace, that is all
-        output = output.replace(name, value)
+        result = result.replace(name, value)
 
-    return output
+    return result
 
 
 def register_style(style, attr, value, target):
@@ -198,7 +222,7 @@ def copy_style(src, dst, target_filter):
 
 def apply_styles(line):
 
-    output = line
+    result = line
 
     # iterate through style-target combinations
     for style in style_set.keys():
@@ -224,16 +248,38 @@ def apply_styles(line):
                     replace_with = '{}={}'.format(attr, value)
 
             # search and replace, that ... never mind
-            output = output.replace(search_for, replace_with)
+            result = result.replace(search_for, replace_with)
 
-    return output
+    return result
+
+
+def jupyter_draw(ppdot_str, format='png', prog='dot'):
+
+    from pygraphviz import AGraph
+    from IPython.display import Image
+
+    # convert ppdot to dot format
+    dot_str = process_string(ppdot_str)
+
+    # create graph and render image
+    graph = AGraph(string=dot_str)
+    data = graph.draw(format=format, prog=prog)
+
+    # pass image to IPython/Jupyter
+    image = Image(data=data)
+
+    return image
+
 
 
 # entry point
 
-parser = argparse.ArgumentParser()
-parser.add_argument('filename')
+if __name__ == '__main__':
 
-script_args = parser.parse_args()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filename')
 
-process_file(script_args.filename)
+    script_args = parser.parse_args()
+
+    result = process_file(script_args.filename)
+    print(result)
