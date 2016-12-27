@@ -1,0 +1,24 @@
+# [Gedit Tool]
+# Input=document
+# Save-files=document
+# Applicability=all
+# Shortcut=<Primary><Alt>d
+# Output=output-panel
+
+#!/bin/sh
+
+cd "$GEDIT_CURRENT_DOCUMENT_DIR" \
+|| exit 1
+
+echo "$GEDIT_CURRENT_DOCUMENT_NAME" | grep "\.ppdot$" > /dev/null \
+|| exit 1
+
+PPDOT_FILE="$GEDIT_CURRENT_DOCUMENT_NAME"
+BASE_FILE=$(basename "$GEDIT_CURRENT_DOCUMENT_NAME" .ppdot)
+DOT_FILE="$BASE_FILE.dot"
+PNG_FILE="$BASE_FILE.png"
+
+$HOME/.ppdot/ppdot.py "$PPDOT_FILE" > "$DOT_FILE"
+cat "$DOT_FILE" | dot -Tpng -o "$PNG_FILE"
+eog "$PNG_FILE"
+
