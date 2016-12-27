@@ -44,6 +44,8 @@
 //! copy base     | inout    | n
 //! copy violet   | inout    | n
 
+//! style start    | shape | ellipse          | n
+//! style end      | shape | ellipse          | n
 //! style decision | shape | diamond          | n
 //! style inout    | shape | parallelogram    | n
 //! style terminal | style | "filled,rounded" | n
